@@ -1,37 +1,18 @@
-name: Fetch Discussion Content Workflow
+name: Discussion Workflow
 
 on:
-  issues:
+  workflow_run:
+    workflows: ["Discussion Action"]
     types:
-      - opened
+      - completed
 
 jobs:
-  fetch-discussion-content:
+  display-discussion-content:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Fetch discussion content
-        run: node fetch-discussion-content.js ${{ github.event.issue.number }}
-
-      - name: Set outputs
-        id: outputs
-        run: |
-          echo "Discussion Title: ${{ steps.fetch-discussion-content.outputs.title }}"
-          echo "Discussion Body: ${{ steps.fetch-discussion-content.outputs.body }}"
-        continue-on-error: true
-
-      - name: Get outputs
-        run: |
-          echo "Discussion Title: ${{ steps.outputs.outputs.title }}"
-          echo "Discussion Body: ${{ steps.outputs.outputs.body }}"
+      - name: Display Discussion Content
+        run: cat discussion-content.txt

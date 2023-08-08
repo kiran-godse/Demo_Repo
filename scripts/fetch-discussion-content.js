@@ -1,5 +1,5 @@
-const fetch = require('node-fetch').default; 
-
+// scripts/fetch-discussion-content.js
+const fetch = require('node-fetch');
 const token = process.env.GITHUB_TOKEN;
 const apiUrl = 'https://api.github.com/graphql';
 
@@ -32,8 +32,8 @@ const query = `
     const data = await response.json();
     const discussion = data.data.discussion;
 
-    console.log(`::set-output name=title::${discussion.title}`);
-    console.log(`::set-output name=body::${discussion.body}`);
+    const fs = require('fs');
+    fs.writeFileSync('discussion-content.txt', `Discussion Title: ${discussion.title}\nDiscussion Body: ${discussion.body}`);
   } catch (error) {
     console.error('Failed to fetch discussion content:', error);
     process.exit(1);
