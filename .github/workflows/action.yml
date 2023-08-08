@@ -1,0 +1,23 @@
+name: Discussion Action
+
+on:
+  discussion:
+    types: [created]
+
+jobs:
+  fetch-discussion-content:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Fetch Discussion Content
+        run: node scripts/fetch-discussion-content.js ${{ github.event.discussion.number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

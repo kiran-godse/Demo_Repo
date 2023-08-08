@@ -1,4 +1,3 @@
-// scripts/fetch-discussion-content.js
 const fetch = require('node-fetch');
 const token = process.env.GITHUB_TOKEN;
 const apiUrl = 'https://api.github.com/graphql';
