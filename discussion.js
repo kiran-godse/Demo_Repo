@@ -4,31 +4,20 @@ const token = process.env.GITHUB_TOKEN;
 const apiUrl = 'https://api.github.com/graphql';
 
 const query = `
-  mutation CreateDiscussion($repositoryId: ID!, $categoryId: ID!, $title: String!, $body: String!) {
-    createDiscussion(input: {
-      repositoryId: $repositoryId,
-      categoryId: $categoryId,
-      title: $title,
-      body: $body
-    }) {
-      discussion {
-        id
-      }
+  query GetDiscussionContent($discussionNumber: Int!) {
+    discussion(number: $discussionNumber) {
+      title
+      body
     }
   }
 `;
 
 (async () => {
   try {
-    // Replace with your repository and category IDs
-    const repositoryId = 'YOUR_REPOSITORY_ID';
-    const categoryId = 'YOUR_CATEGORY_ID';
+    const discussionNumber = process.argv[2];
 
     const variables = {
-      repositoryId,
-      categoryId,
-      title: 'Discussion Title',
-      body: 'Discussion Body',
+      discussionNumber: parseInt(discussionNumber),
     };
 
     const response = await fetch(apiUrl, {
@@ -41,11 +30,12 @@ const query = `
     });
 
     const data = await response.json();
-    const discussionId = data.data.createDiscussion.discussion.id;
+    const discussion = data.data.discussion;
 
-    console.log(`Discussion created with ID: ${discussionId}`);
+    console.log('Discussion Title:', discussion.title);
+    console.log('Discussion Body:', discussion.body);
   } catch (error) {
-    console.error('Failed to create discussion:', error);
+    console.error('Failed to fetch discussion content:', error);
     process.exit(1);
   }
 })();
