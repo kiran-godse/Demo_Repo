@@ -1,5 +1,6 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
+const fetch = require('node-fetch');
 const token = process.env.GITHUB_TOKEN;
 const apiUrl = 'https://api.github.com/graphql';
 
