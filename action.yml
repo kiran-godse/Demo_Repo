@@ -1,0 +1,12 @@
+name: Fetch Discussion Content
+
+inputs:
+  discussion-number:
+    description: 'Discussion number'
+    required: true
+
+outputs:
+  title:
+    description: 'Fetched discussion title'
+  body:
+    description: 'Fetched discussion body'

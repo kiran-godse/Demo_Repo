@@ -1,15 +1,10 @@
 {
   "name": "demo_repo",
   "version": "1.0.0",
-  "description": "A demo repository",
-  "scripts": {
-    "start": "node fetch-discussion-content.js"
-  },
-  "author": "Your Name",
-  "license": "MIT",
+  "description": "GitHub API Demo",
+  "main": "index.js",
+  "type": "module", 
   "dependencies": {
-    "node-fetch": "^3.1.0"
-  },
-  "main": "discussion.js",
-  "keywords": []
+    "node-fetch": "^3.0.0"
+  }
 }

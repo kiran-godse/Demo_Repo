@@ -32,8 +32,8 @@ const query = `
     const data = await response.json();
     const discussion = data.data.discussion;
 
-    console.log('Discussion Title:', discussion.title);
-    console.log('Discussion Body:', discussion.body);
+    console.log(`::set-output name=title::${discussion.title}`);
+    console.log(`::set-output name=body::${discussion.body}`);
   } catch (error) {
     console.error('Failed to fetch discussion content:', error);
     process.exit(1);
