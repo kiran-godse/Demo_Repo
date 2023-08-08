@@ -1,12 +1,12 @@
-name: Create Discussion
+name: Fetch Discussion Content
 
 on:
-  push:
-    branches:
-      - main
+  discussion:
+    types:
+      - created
 
 jobs:
-  create-discussion:
+  fetch-discussion-content:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run create-discussion script
-        run: node create-discussion.js
+      - name: Fetch Discussion Content
+        run: node fetch-discussion-content.js ${{ github.event.discussion.number }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
