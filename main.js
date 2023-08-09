@@ -3,7 +3,7 @@ const github = require('@actions/github');
 
 async function fetchDiscussionContent() {
   try {
-    const token = process.env.GITHUB_TOKEN;
+    const token = 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
     const octokit = github.getOctokit(token);
 
     const discussionNumber = core.getInput('discussion_number');
