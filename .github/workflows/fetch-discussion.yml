@@ -2,8 +2,7 @@ name: Discussion Created Trigger
 
 on:
   discussion:
-    types:
-      - created
+    types: [created]
 
 jobs:
   processDiscussion:
@@ -12,10 +11,6 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-
-      - name: Set up environment variables
-        run: |
-          echo "GITHUB_CONTEXT=$GITHUB_CONTEXT" >> $GITHUB_ENV
 
       - name: Trigger discussion logic action
         uses: ./.github/workflows/fetch-discussion.yml
