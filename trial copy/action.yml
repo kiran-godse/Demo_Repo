@@ -1,0 +1,12 @@
+name: Fetch Discussion Content
+description: Fetches and prints the content of a GitHub discussion
+inputs:
+  discussion_number:
+    description: 'The number of the GitHub discussion'
+    required: true
+outputs:
+  discussion_content:
+    description: 'The content of the GitHub discussion'
+runs:
+  using: 'node12'
+  main: 'main.js'

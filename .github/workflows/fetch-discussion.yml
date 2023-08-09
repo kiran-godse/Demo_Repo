@@ -24,7 +24,7 @@ jobs:
 
       - name: Fetch Discussion Content
         id: discussion
-        uses: kiran-godse/document-workflow@main
+        uses: kiran-godse/demo_repo@main
         with:
           discussion_number: ${{ github.event.discussion.number }}
 
