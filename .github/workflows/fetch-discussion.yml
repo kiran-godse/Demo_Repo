@@ -13,8 +13,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
-      - name: Set up environment variables
-        run: echo "DISCUSSION_NUMBER=${{ github.event.discussion.number }}" >> $GITHUB_ENV
-
       - name: Trigger discussion logic action
         uses: ./
+        with:
+          discussion_number: ${{ github.event.client_payload.discussion_number }}
