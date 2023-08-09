@@ -1,12 +1,23 @@
-name: Fetch Discussion Content
-description: Fetches and prints the content of a GitHub discussion
-inputs:
-  discussion_number:
-    description: 'The number of the GitHub discussion'
-    required: true
-outputs:
-  discussion_content:
-    description: 'The content of the GitHub discussion'
-runs:
-  using: 'node12'
-  main: 'fetch-discussion.js'
+name: Discussion Action
+
+on:
+  discussion:
+    types: [created]
+
+jobs:
+  fetch-discussion-content:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Fetch Discussion Content
+        run: node scripts/fetch-discussion-content.js ${{ github.event.discussion.number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
