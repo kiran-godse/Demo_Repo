@@ -2,19 +2,13 @@
   "name": "Demo_Repo",
   "version": "1.0.0",
   "description": "A demo repository",
-  "scripts": {
-    "start": "node fetch-discussion-content.js"
-  },
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {
     "@octokit/rest": "^20.0.1",
-    "node-fetch": "^3.1.0"  
+    "node-fetch": "^3.1.0",
     "@actions/core": "^1.2.0",
     "@actions/github": "^5.0.1"
-  }
-}
-
   },
   "main": "discussion.js",
   "keywords": []
