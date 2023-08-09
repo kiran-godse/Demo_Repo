@@ -15,7 +15,7 @@ jobs:
 
       - name: Fetch Discussion Content
         id: discussion
-        uses: kiran-godse/Demo-Repo@v1
+        uses: ./Demo_Repo/action.yml@v1
         with:
           discussion_number: ${{ github.event.discussion.number }}
 
