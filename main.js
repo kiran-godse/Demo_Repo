@@ -3,14 +3,14 @@ const { Octokit } = require('@octokit/rest');
 async function fetchDiscussionContent() {
   try {
     const octokit = new Octokit({
-       auth: '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',
+      auth: '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',
     });
 
     const discussionNumber = process.env.INPUT_DISCUSSION_NUMBER;
 
     const discussion = await octokit.rest.discussions.get({
-      owner: 'kiran-godse',  
-      repo: 'Demo_Repo',   
+      owner: 'kiran-godse',
+      repo: 'Demo_Repo',
       discussion_number: discussionNumber,
     });
 
@@ -27,4 +27,6 @@ async function fetchDiscussionContent() {
 
 // Call the async function to initiate the action logic
 fetchDiscussionContent();
+
+
 
