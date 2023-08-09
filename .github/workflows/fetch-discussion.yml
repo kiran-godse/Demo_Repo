@@ -1,18 +1,17 @@
-name: Discussion Workflow
+name: Discussion Created Trigger
 
 on:
-  workflow_run:
-    workflows: ["Discussion Action"]
+  discussion:
     types:
-      - completed
+      - created
 
 jobs:
-  display-discussion-content:
+  processDiscussion:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out code
+      - name: Check out repository
         uses: actions/checkout@v2
 
-      - name: Display Discussion Content
-        run: cat discussion-content.txt
+      - name: Trigger discussion logic action
+        uses: ./.github/workflows/fetch-discussion.yml

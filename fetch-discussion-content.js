@@ -1,40 +1,21 @@
-const fetch = require('node-fetch');
-const token = process.env.GITHUB_TOKEN;
-const apiUrl = 'https://api.github.com/graphql';
+const { Octokit } = require('@octokit/rest');
 
-const query = `
-  query GetDiscussionContent($discussionNumber: Int!) {
-    discussion(number: $discussionNumber) {
-      title
-      body
-    }
-  }
-`;
+try {
+  const octokit = new Octokit({
+    auth: process.env.GITHUB_TOKEN,
+  });
 
-(async () => {
-  try {
-    const discussionNumber = process.argv[2];
+  const discussionNumber = process.env.INPUT_DISCUSSION_NUMBER;
+  
+  // Fetch the content of the discussion
+  const discussion = await octokit.rest.discussions.get({
+    owner: 'kiran-godse',
+    repo: 'Demo_Repo',
+    discussion_number: discussionNumber,
+  });
 
-    const variables = {
-      discussionNumber: parseInt(discussionNumber),
-    };
-
-    const response = await fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ query, variables }),
-    });
-
-    const data = await response.json();
-    const discussion = data.data.discussion;
-
-    const fs = require('fs');
-    fs.writeFileSync('discussion-content.txt', `Discussion Title: ${discussion.title}\nDiscussion Body: ${discussion.body}`);
-  } catch (error) {
-    console.error('Failed to fetch discussion content:', error);
-    process.exit(1);
-  }
-})();
+  // Print the content of the discussion
+  console.log(`Discussion Content:\n${discussion.data.body}`);
+} catch (error) {
+  console.error('Error:', error);
+}
