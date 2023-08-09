@@ -10,9 +10,8 @@ async function fetchDiscussionContent() {
 
     // Fetch the content of the discussion
     const discussion = await octokit.rest.discussions.get({
-      owner: context.repo.kiran-godse,
-      repo: context.repo.Demo_Repo,   
-      discussion_number: discussionNumber,
+      owner: context.repo['kiran-godse'], 
+      repo: context.repo['Demo_Repo'],   
     });
 
     // Print the content of the discussion
