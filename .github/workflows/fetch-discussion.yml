@@ -13,7 +13,11 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
-      - name: Trigger discussion logic action
-        uses: ./
+      - name: Fetch Discussion Content
+        id: discussion
+        uses: kiran-godse/Demo-Repo@v1
         with:
-          discussion_number: ${{ github.event.client_payload.discussion.number }}
+          discussion_number: ${{ github.event.discussion.number }}
+
+      - name: Display Discussion Content
+        run: echo "${{ steps.discussion.outputs.discussion_content }}"
