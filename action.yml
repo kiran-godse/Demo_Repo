@@ -20,4 +20,4 @@ jobs:
       - name: Fetch Discussion Content
         run: node scripts/fetch-discussion-content.js ${{ github.event.discussion.number }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ KIRAN_GITHUB_RAINFALL}}
