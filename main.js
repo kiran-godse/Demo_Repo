@@ -1,4 +1,7 @@
 const { Octokit } = require('@octokit/rest');
+const discussionNumber = process.env.INPUT_DISCUSSION_NUMBER || github.event.client_payload.discussion.number;
+
+
 
 async function fetchDiscussionContent() {
   try {

@@ -16,4 +16,4 @@ jobs:
       - name: Trigger discussion logic action
         uses: ./
         with:
-          discussion_number: ${{ github.event.client_payload.discussion_number }}
+          discussion_number: ${{ github.event.client_payload.discussion.number }}
