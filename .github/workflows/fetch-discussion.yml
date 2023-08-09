@@ -13,5 +13,9 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
+      - name: Set up environment variables
+        run: |
+          echo "GITHUB_CONTEXT=$GITHUB_CONTEXT" >> $GITHUB_ENV
+
       - name: Trigger discussion logic action
         uses: ./.github/workflows/fetch-discussion.yml

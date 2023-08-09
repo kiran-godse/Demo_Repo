@@ -1,3 +1,4 @@
+// main.js
 const { Octokit } = require('@octokit/rest');
 
 try {
@@ -5,12 +6,13 @@ try {
     auth: process.env.GITHUB_TOKEN,
   });
 
-  const discussionNumber = process.env.INPUT_DISCUSSION_NUMBER;
-  
+  const context = JSON.parse(process.env.GITHUB_CONTEXT);
+  const discussionNumber = context.payload.discussion.number;
+
   // Fetch the content of the discussion
   const discussion = await octokit.rest.discussions.get({
-    owner: 'kiran-godse',
-    repo: 'Demo_Repo',
+    owner: context.repo.owner,
+    repo: context.repo.repo,
     discussion_number: discussionNumber,
   });
 
