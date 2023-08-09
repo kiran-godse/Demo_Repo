@@ -13,9 +13,18 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
+  
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+            node-version: '16'
+          
+      - name: Install npm dependencies
+        run: npm install
+
       - name: Fetch Discussion Content
         id: discussion
-        uses: ./.github/actions/fetch-discussion
+        uses: kiran-godse/document-workflow@main
         with:
           discussion_number: ${{ github.event.discussion.number }}
 
