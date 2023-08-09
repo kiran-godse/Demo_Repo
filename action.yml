@@ -9,4 +9,4 @@ outputs:
     description: 'The content of the GitHub discussion'
 runs:
   using: 'node12'
-  main: 'fetch-discussion.js'
+  main: 'main.js'
