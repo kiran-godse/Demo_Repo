@@ -20,6 +20,7 @@ jobs:
           discussion_number: ${{ github.event.discussion.number }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
 
       - name: Display Discussion Content
         run: echo "${{ steps.discussion.outputs.discussion_content }}"
