@@ -19,7 +19,7 @@ jobs:
         with:
           discussion_number: ${{ github.event.discussion.number }}
         env:
-          MY_PERSONAL_TOKEN: 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
+          MY_PERSONAL_TOKEN: ${{ secrets.MY_PERSONAL_TOKEN }}
 
       - name: Display Discussion Content
         run: echo "${{ steps.discussion.outputs.discussion_content }}"
