@@ -5,6 +5,7 @@ on:
     types:
       - created
 
+
 jobs:
   processDiscussion:
     runs-on: ubuntu-latest
