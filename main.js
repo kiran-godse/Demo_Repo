@@ -3,7 +3,7 @@ const github = require('@actions/github');
 
 async function fetchDiscussionContent() {
   try {
-    const token = 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
+    const token = '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'; 
     const octokit = github.getOctokit(token);
 
     const discussionNumber = core.getInput('discussion_number');
@@ -25,4 +25,5 @@ async function fetchDiscussionContent() {
 
 // Call the async function to initiate the action logic
 fetchDiscussionContent();
+
 
