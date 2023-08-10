@@ -3,14 +3,14 @@ const { Octokit } = require('@octokit/rest');
 async function fetchDiscussionContent() {
   try {
     const octokit = new Octokit({
-       auth: process.env.MY_PERSONAL_TOKEN,
+      auth: process.env.MY_PERSONAL_TOKEN,
     });
 
     const discussionNumber = process.env.INPUT_DISCUSSION_NUMBER;
 
     const discussion = await octokit.rest.discussions.get({
-      owner: 'kiran-godse',  
-      repo: 'Demo_Repo',   
+      owner: 'kiran-godse',
+      repo: 'Demo_Repo',
       discussion_number: discussionNumber,
     });
 
