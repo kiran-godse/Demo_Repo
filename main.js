@@ -1,29 +1,28 @@
-const { Octokit } = require('@octokit/rest');
+const core = require('@actions/core');
+const github = require('@actions/github');
 
 async function fetchDiscussionContent() {
   try {
-    const octokit = new Octokit({
-      auth: process.env.MY_PERSONAL_TOKEN,
-    });
+    const token = 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
+    const octokit = github.getOctokit(token);
 
-    const discussionNumber = process.env.INPUT_DISCUSSION_NUMBER;
+    const discussionNumber = core.getInput('discussion_number');
 
     const discussion = await octokit.rest.discussions.get({
-      owner: 'kiran-godse',
-      repo: 'Demo_Repo',
+      owner: github.context.repo.owner,
+      repo: github.context.repo.repo,
       discussion_number: discussionNumber,
     });
 
     const discussionContent = discussion.data.body;
     console.log(`Discussion Content:\n${discussionContent}`);
 
-    // Set the discussion content as an output
-    console.log(`::set-output name=discussion_content::${discussionContent}`);
+    core.setOutput('discussion_content', discussionContent);
   } catch (error) {
-    console.error('Error:', error);
-    process.exit(1);
+    core.setFailed(`Error: ${error.message}`);
   }
 }
 
 // Call the async function to initiate the action logic
 fetchDiscussionContent();
+what about this
